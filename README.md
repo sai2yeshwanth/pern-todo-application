@@ -1,2 +1,2 @@
 # todo-application
-implement todo application using react, node js, express js, postgres
+implement todo application using (PERN)Postgres Express  React Node
