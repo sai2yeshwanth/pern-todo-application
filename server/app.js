@@ -37,7 +37,9 @@ app.get("/todo", async (req, res) => {
 app.get("/todo/:id", async (req, res) => {
   try {
     const todo_id = req.params.id;
-    const todo = await pool.query("SELECT * FROM todo WHERE todo_id = $1", [todo_id]);
+    const todo = await pool.query("SELECT * FROM todo WHERE todo_id = $1", [
+      todo_id,
+    ]);
     return res.send(todo.rows[0]);
   } catch (err) {
     console.log(err);
@@ -46,26 +48,31 @@ app.get("/todo/:id", async (req, res) => {
 
 //update todo
 app.put("/todo/:id", async (req, res) => {
-    try {
-      const todo_id = req.params.id;
-      const description = req.body.description;
+  try {
+    const todo_id = req.params.id;
+    const description = req.body.description;
 
-      const updateTodo = await pool.query("UPDATE todo SET description = $1 WHERE todo_id = $2", [description,todo_id]);
-      return res.send("Todo was updated");
-    } catch (err) {
-      console.log(err);
-    }
-  });
+    const updateTodo = await pool.query(
+      "UPDATE todo SET description = $1 WHERE todo_id = $2",
+      [description, todo_id]
+    );
+    return res.send("Todo was updated");
+  } catch (err) {
+    console.log(err);
+  }
+});
 //delete todo
 app.delete("/todo/:id", async (req, res) => {
-    try {
-      const todo_id = req.params.id;
-      const deleteTodo = await pool.query("DELETE FROM todo WHERE todo_id = $1", [todo_id]);
-      return res.send("Todo was deleted");
-    } catch (err) {
-      console.log(err);
-    }
-  });
+  try {
+    const todo_id = req.params.id;
+    const deleteTodo = await pool.query("DELETE FROM todo WHERE todo_id = $1", [
+      todo_id,
+    ]);
+    return res.send("Todo was deleted");
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 app.listen(3000, () => {
   console.log("server has started on port 3000");
