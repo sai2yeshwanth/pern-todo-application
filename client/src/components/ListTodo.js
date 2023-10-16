@@ -15,6 +15,18 @@ const ListTodo = () => {
       console.error(error.message);
     }
   };
+  //delete function
+  const onClickDeletesTodo = async (todoId) => {
+    try {
+        const response = await fetch(`http://localhost:3000/todo/${todoId}`,{
+            method: 'DELETE'
+        });
+        setTodoData(todoData.filter(item => item.todo_id !== todoId))
+    } catch (error) {
+      console.error(error.message);
+    }
+    console.log(todoId);
+  };
   return (
     <Fragment>
       <table className="table mt-5 text-center">
@@ -27,13 +39,18 @@ const ListTodo = () => {
         </thead>
         <tbody>
           {todoData.map((item) => (
-            <tr>
+            <tr key={item.todo_id}>
               <td>{item.description}</td>
               <td>
                 <button>Edit</button>
               </td>
               <td>
-                <button>Delete</button>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => onClickDeletesTodo(item.todo_id)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
