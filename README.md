@@ -1,7 +1,7 @@
 # todo-application
 
 Implement todo application using (PERN)Postgres Express React Node
-In this application you can learn how to create a server and client, How to connect and create to Postgresql database and create a table, Build Routes with Postgresql query (Restful API), Build the different components in the client
+In this application you can learn how to create a server and client, How to connect and create to Postgresql database and create a table, Build Routes with Postgresql query (Restful API), Build the different components in the client, How to use Bootstrap 
 
 # Reference
 
